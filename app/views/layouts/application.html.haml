@@ -1,0 +1,12 @@
+!!! 5
+%html
+	%head
+		%title CSK
+		= stylesheet_link_tag 'scaffold'
+		= #formtastic_stylesheet_link_tag
+		= javascript_include_tag :defaults
+		= #javascript_include_tag "jquery.markitup.js", "textile", "jquery.autogrow", "jquery.placeholder"
+		= csrf_meta_tag
+		
+	%body
+		= yield
