@@ -9,10 +9,11 @@ development:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: csk_development
+  database: CSK_development
   pool: 5
   username: root
-  password:
+  password: new_password_here
+  socket: /tmp/mysql.sock
   host: localhost
 
 # Warning: The database defined as "test" will be erased and
@@ -22,18 +23,20 @@ test:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: csk_test
+  database: CSK_development
   pool: 5
   username: root
-  password:
+  password: new_password_here
+  socket: /tmp/mysql.sock
   host: localhost
 
 production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: csk_production
+  database: CSK_development
   pool: 5
   username: root
-  password:
+  password: new_password_here
   host: localhost
+  socket: /tmp/mysql.sock
