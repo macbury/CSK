@@ -1,0 +1,41 @@
+<h1>Listing applications</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Topic</th>
+    <th>Reaction</th>
+    <th>Closed by user</th>
+    <th>Category</th>
+    <th>To user</th>
+    <th>Important</th>
+    <th>Content</th>
+    <th>Close date</th>
+    <th>Execution</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @applications.each do |application| %>
+  <tr>
+    <td><%= application.user_id %></td>
+    <td><%= application.topic %></td>
+    <td><%= application.reaction %></td>
+    <td><%= application.closed_by_user_id %></td>
+    <td><%= application.category_id %></td>
+    <td><%= application.to_user_id %></td>
+    <td><%= application.important %></td>
+    <td><%= application.content %></td>
+    <td><%= application.close_date %></td>
+    <td><%= application.execution %></td>
+    <td><%= link_to 'Show', application %></td>
+    <td><%= link_to 'Edit', edit_application_path(application) %></td>
+    <td><%= link_to 'Destroy', application, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Application', new_application_path %>

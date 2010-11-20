@@ -1,0 +1,22 @@
+%h1 Użytkownicu
+
+%table
+	%thead
+		%tr
+			%th Login
+			%th Imię
+			%th Nazwisko
+			%th Telefon
+			%th Zespół
+			%th Uprawnienia
+	%tbody
+		- @users.each do |user|
+			%tr
+				%td= link_to user.login, user
+				%td= user.name
+				%td= user.surname
+				%td= user.phone
+				%td= user.about_band
+				%td= "#{user.role_name} (#{user.role})"
+
+= will_paginate @users

@@ -1,5 +1,16 @@
 Csk::Application.routes.draw do
-  devise_for :users
+  resources :users
+	
+	resource :session
+	match '/more_beer_for_students' => "sessions#new", :as => :login
+	
+  resources :categories do
+  	resources :applications do
+	  	resources :comments
+	  end
+  end
+
+  #devise_for :users
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

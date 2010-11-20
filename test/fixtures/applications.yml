@@ -1,0 +1,25 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user_id: 1
+  topic: MyString
+  reaction: 1
+  closed_by_user_id: 1
+  category_id: 1
+  to_user_id: 1
+  important: 1
+  content: MyText
+  close_date: 2010-11-14 14:24:43
+  execution: 1
+
+two:
+  user_id: 1
+  topic: MyString
+  reaction: 1
+  closed_by_user_id: 1
+  category_id: 1
+  to_user_id: 1
+  important: 1
+  content: MyText
+  close_date: 2010-11-14 14:24:43
+  execution: 1

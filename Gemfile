@@ -7,9 +7,8 @@ gem 'rails', '3.0.0'
 
 gem 'mysql2'
 gem 'cancan'
-gem 'devise'
 gem 'haml'
-gem 'hpricot'
+gem 'will_paginate'
 # Use unicorn as the web server
 # gem 'unicorn'
 

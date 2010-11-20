@@ -1,0 +1,9 @@
+%h1 Logowanie
+= form_for @session, :url => session_path do |f|
+	%p
+		= f.label :login
+		= f.text_field :login
+	%p
+		= f.label :password
+		= f.password_field :password
+	= f.submit "Login"
