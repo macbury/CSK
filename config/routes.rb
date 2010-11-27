@@ -2,12 +2,14 @@ Csk::Application.routes.draw do
   resources :users
 	
 	resource :session
-	match '/more_beer_for_students' => "sessions#new", :as => :login
-	
+	match '/gdzie-jest-krzyz' => "sessions#new", :as => :login
+	match '/tanie-piwo-dla-kazdego' => 'sessions#destroy', :as => :logout
   resources :categories do
-  	resources :applications do
-	  	resources :comments
-	  end
+  	resources :ownerships
+  end
+
+	resources :applications do
+  	resources :comments
   end
 
   #devise_for :users

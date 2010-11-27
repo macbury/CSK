@@ -1,0 +1,25 @@
+.block
+	.secondary-navigation
+		%ul.wat-cf
+			%li.first= link_to "Wszystkie kategorie", categories_path
+			%li= link_to "Nowa kategoria", new_category_path
+			%li= link_to "Edytuj kategorię", edit_category_path(@category)
+			%li.active= link_to "Użytkownicy kategorii", category_ownerships_path(@category)
+	.content
+		%h2.title
+			= "Użytkownicy kategorii: #{@category.name}"
+		.inner
+			%p Kliknij na nazwę użytkownika aby go przeniesc do drugiej kolumny
+			%p W lewej kolumnie znajdują się użytkownicy przypisani do wybranej kategorii natomiast w prawej kolumnie możesz wyszukiwać użytkowników na podstawie loginu, emailu lu nr. telefonu
+			.columns.wat-cf
+				.column.left
+					.ul.scroll-list#users_left
+						= render :partial => "ownerships/user", :collection => @owners
+				.column.right
+					= form_tag users_path, :method => :get, :class => "form" do
+						.inner.group
+							= text_field_tag "k", params[:k], :class => "text_field", :id => "ownership_users_search"
+					= form_for [@category, Ownership.new] do |f|
+						.ul.scroll-list#users_right
+							= render :partial => "ownerships/user", :collection => @users
+			.clear

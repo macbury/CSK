@@ -1,0 +1,43 @@
+.scroll-list {
+  height: 300px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  display: block;
+  padding: 5px;
+  list-style: none inside;
+}
+
+#users_left {
+  height: 346px;
+}
+
+.scroll-list li a {
+  display: block;
+  text-decoration: none;
+  padding: 3px 5px;
+  font-weight: bold;
+}
+
+.scroll-list li a:hover {
+  background-color: #E5E5E5;
+}
+
+.columns {
+  width: 100%;
+}
+
+.columns .column {
+  width: 50%;
+}
+
+.columns .column.left {
+  float: left;
+}
+
+.columns .column.right {
+  float: right;
+}
+
+.clear {
+  clear: both;
+}

@@ -4,10 +4,14 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.xml
   def index
-    @users = User.order("users.login ASC").paginate :page => params[:page], :per_page => 25
+		@full_width = true
+    @users = User.order("username ASC")
+		@users = @users.where("username LIKE ? OR email LIKE ? OR phone LIKE ?", "#{params[:k]}%", "#{params[:k]}%", "#{params[:k]}%") if params[:k]
+		@users = @users.paginate :page => params[:page], :per_page => 30
 
     respond_to do |format|
       format.html # index.html.erb
+			format.js { render :partial => "ownerships/user", :collection => @users }
       format.xml  { render :xml => @users }
     end
   end

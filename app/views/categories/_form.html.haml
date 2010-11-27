@@ -1,0 +1,14 @@
+.group
+	= f.label :name, "Nazwa"
+	= f.text_field :name, :class => 'text_field'
+	%span.description Np. Piwo
+.group
+	= f.label :color, "Kolor"
+	= f.text_field :color, :class => 'text_field'
+	%span.description Np: #f0f0f0
+.group.navform.wat-cf
+	%button.button{:type => "submit"}
+		= image_tag("web-app-theme/icons/tick.png")
+		= "Zapisz"
+	= link_to image_tag("web-app-theme/icons/key.png") + " Użytkownicy", category_ownerships_path(@category), :class => "button" unless (@category.nil? || @category.new_record?)
+	= link_to image_tag("web-app-theme/icons/cross.png") + " Anuluj", categories_path, :class => "button"

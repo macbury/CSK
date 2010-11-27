@@ -9,6 +9,11 @@ gem 'mysql2'
 gem 'cancan'
 gem 'haml'
 gem 'will_paginate'
+group :development, :test do
+	gem 'web-app-theme', '>= 0.6.2'
+	gem 'hpricot'
+	gem 'ruby_parser'
+end
 # Use unicorn as the web server
 # gem 'unicorn'
 

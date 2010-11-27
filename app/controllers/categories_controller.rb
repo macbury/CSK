@@ -1,8 +1,10 @@
 class CategoriesController < ApplicationController
+	before_filter :authenticate_user!
+	before_filter :admin_required!, :except => [:edit, :update]
   # GET /categories
   # GET /categories.xml
   def index
-    @categories = Category.all
+    @categories = Category.order("name ASC").paginate :per_page => 30, :page => params[:page]
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,12 +15,8 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.xml
   def show
-    @category = Category.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @category }
-    end
+		@category = Category.find(params[:id])
+    redirect_to category_ownerships_path(@category)
   end
 
   # GET /categories/new

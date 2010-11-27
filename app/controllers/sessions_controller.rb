@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+	layout "login"
+	
 	def new
 		@session = User.new
 		
@@ -29,8 +31,6 @@ class SessionsController < ApplicationController
 	
 	def destroy
 		session.delete(:user_id)
-		respond_to do |foramt|
-			format.html { redirect_to root_path, :notice => "Zosta;es wylogowany" }
-		end
+		redirect_to root_path, :notice => "Zostales wylogowany"
 	end
 end

@@ -42,6 +42,32 @@ ActiveRecord::Schema.define(:version => 20101120142021) do
     t.datetime "updated_at"
   end
 
+  create_table "dm_user", :force => true do |t|
+    t.string   "username",                            :default => "",     :null => false
+    t.string   "email",                               :default => "",     :null => false
+    t.string   "algorithm",            :limit => 128, :default => "sha1", :null => false
+    t.string   "salt",                 :limit => 128
+    t.string   "password",             :limit => 128
+    t.boolean  "is_active",                           :default => true
+    t.boolean  "is_super_admin",                      :default => false
+    t.datetime "last_login"
+    t.string   "forgot_password_code", :limit => 12
+    t.datetime "created_at",                                              :null => false
+    t.datetime "updated_at",                                              :null => false
+    t.string   "phone"
+    t.string   "name"
+    t.string   "surname"
+    t.text     "about"
+    t.text     "about_band"
+    t.text     "about_admin"
+    t.integer  "role",                                :default => 0
+  end
+
+  add_index "dm_user", ["email"], :name => "email", :unique => true
+  add_index "dm_user", ["forgot_password_code"], :name => "forgot_password_code", :unique => true
+  add_index "dm_user", ["is_active"], :name => "is_active_idx_idx"
+  add_index "dm_user", ["username"], :name => "username", :unique => true
+
   create_table "ownerships", :force => true do |t|
     t.integer  "category_id"
     t.integer  "user_id"

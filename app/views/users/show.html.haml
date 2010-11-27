@@ -1,24 +1,44 @@
-%h1= "Informacje o użytkowniku #{@user.login}"
-%dl
-	%dt Login
-	%dd= @user.login
-	%dt Imię
-	%dd= @user.name
-	%dt Nazwisko
-	%dd= @user.surname
-	%dt Email
-	%dd= @user.email
-	%dt Telefon
-	%dd= @user.phone
-	%dt Informacje
-	%dd= simple_format @user.about
-	%dt Informacje o zespole
-	%dd= @user.about_band
-	%dt Informacje o adminie
-	%dd= @user.about_admin
-	%dt Uprawnienia
-	%dd= "#{@user.role_name} (#{@user.role})"
+.block
+	.secondary-navigation
+		%ul.wat-cf
+			%li.first= link_to "Wszyscy użytkownicy", users_path
+			%li.active= link_to "Profil", user_path
+	.content
+		.inner
+			%p
+				%b
+					Login:
+				= @user.username
+			%p
+				%b
+					Email:
+				= @user.email
+			%p
+				%b
+					Telefon:
+				= @user.phone
+			%p
+				%b
+					Imię:
+				= @user.name
+			%p
+				%b
+					Nazwisko:
+				= @user.surname
+			%p
+				%b
+					O mnie:
+				= @user.about
+			%p
+				%b
+					O zespole:
+				= @user.about_band
+			%p
+				%b
+					O Adminie
+				= @user.about_admin
+			%p
+				%b
+					Uprawnienia:
+				= @user.role_name
 
-%p
-	= link_to 'Edytuj', edit_user_path(@user)
-	= link_to 'Cofnij', users_path

@@ -1,0 +1,26 @@
+.block
+	.secondary-navigation
+		%ul.wat-cf
+			%li.first.active= link_to "Wszystkie kategorie", categories_path
+			%li= link_to "Nowa kategoria", new_category_path
+	.content
+		%h2.title
+			Wszystkie Kategorie
+		.inner
+			%table.table
+				%tr
+					%th.first Nazwa
+					%th Kolor
+					%th.last
+				- @categories.each do |category|
+					%tr{:class => cycle("odd", "even")}
+						%td
+							= link_to category.name, edit_category_path(category)
+						%td
+							= category.color
+						%td.last
+							= link_to "Użytkownicy", category_ownerships_path(category)
+			.actions-bar.wat-cf
+				.actions
+				= will_paginate @categories
+- #content_for :sidebar, render(:partial => 'sidebar')

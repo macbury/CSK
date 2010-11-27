@@ -1,22 +1,38 @@
-%h1 Użytkownicu
+.block
+	.secondary-navigation
+		%ul.wat-cf
+			%li.first.active= link_to "Lista", users_path
+	.content
+		%h2.title
+			Wszyscy Użytkownicy
+		.inner
+			= form_tag users_path, :method => :get, :class => "form" do
+				.group
+					= text_field_tag "k", params[:k], :class => "text_field"
+					= submit_tag "Szukaj", :class => "button"
+		.inner
+			%table.table
+				%tr
+					%th.first ID
+					%th Login
+					%th Imię
+					%th Nazwisko
+					%th Telefon
+					%th E-Mail
+					%th.last Uprawnienia
+				- @users.each do |user|
+					%tr{:class => cycle("odd", "even")}
+						%td
+							= user.id
+						%td
+							= link_to user.username, user_path(user)
+						%td
+							= user.name
+						%td= user.surname
+						%td= user.phone
+						%td= user.email
+						%td= "#{user.role_name}(#{user.role})"
+			.actions-bar.wat-cf
+				.actions
+				= will_paginate @users
 
-%table
-	%thead
-		%tr
-			%th Login
-			%th Imię
-			%th Nazwisko
-			%th Telefon
-			%th Zespół
-			%th Uprawnienia
-	%tbody
-		- @users.each do |user|
-			%tr
-				%td= link_to user.login, user
-				%td= user.name
-				%td= user.surname
-				%td= user.phone
-				%td= user.about_band
-				%td= "#{user.role_name} (#{user.role})"
-
-= will_paginate @users
