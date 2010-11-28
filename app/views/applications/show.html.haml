@@ -1,0 +1,54 @@
+.block
+	.secondary-navigation
+		%ul.wat-cf
+			%li.first= link_to "Zgłoszenia", root_path
+			%li= link_to "Nowe zgłoszenie", new_application_path
+			%li.active= link_to "Podgląd zgłoszenia", application_path
+	.content
+		.inner
+			%p
+				%b
+					Dodane przez
+				= link_to @application.user.username, @application.user
+			%p
+				%b
+					Tytuł
+				= @application.topic
+			%p
+				%b
+					Dodano
+				= @application.created_at.to_s(:long)
+			%p
+				%b
+					Status
+				= @application.reaction_text
+			- if @application.closed?
+				%p
+					%b
+						Zamknięte przez użytkownika
+					= link_to @application.closed_by.username, @application.closed_by
+					o
+					= link_to @application.close_date.to_s(:long)
+			- if @application.direct?
+				%p
+					%b
+						Wysłane do użytkownika
+					= link_to @application.direct_to.username, @application.direct_to
+			%p
+				%b
+					Piorytet
+				= @application.important? ? "Ważne" : "Zwykłe"
+			%p
+				%b
+					Tresc:
+			= simple_format @application.content
+			%p
+				%b
+					Wykonano
+				=# @application.execution || 0 + "%"
+				0 %
+			
+			.wat-cf
+				= link_to image_tag("web-app-theme/icons/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}") + " Edytuj", edit_application_path(@application), :class => "button"
+				= link_to image_tag("web-app-theme/icons/cross.png", :alt => "#{t("web-app-theme.delete", :default=> "Delete")}") + "Usuń", application_path(@application), :method => "delete", :class => "button", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}"
+- content_for :sidebar, render(:partial => 'sidebar')

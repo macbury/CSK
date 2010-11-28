@@ -1,0 +1,5 @@
+%li
+	%h4
+		= content_tag :b, "( Ważne )" if application.important?
+		= link_to application.topic, application
+	= truncate(application.content, :length => 342)

@@ -8,8 +8,9 @@ class User < ActiveRecord::Base
 	has_many :categories, :through => :ownerships
 	
 	has_many :comments, :dependent => :destroy
+	has_many :applications, :dependent => :destroy
 	
-	attr_protected :role, :password, :salt
+	attr_accessible :name, :surname, :about, :about_band, :about_admin, :phone
 	
 	set_table_name "dm_user"
 	

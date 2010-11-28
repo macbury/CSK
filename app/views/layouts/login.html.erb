@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>CSK - LOGOWANIE</title>
+  <title><%= [t('head.main_title'), t("head.#{controller.controller_name}", :default => nil)].compact.join(" - ")%></title>
   <%= stylesheet_link_tag "web-app-theme/base", "web-app-theme/themes/default/style", "web-app-theme/override", :cache => true %>
   <%= csrf_meta_tag %>
 </head>

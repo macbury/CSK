@@ -41,4 +41,11 @@
 				%b
 					Uprawnienia:
 				= @user.role_name
-
+			%p
+				%b
+					Członek kategorii:
+				= @user.categories.all.map(&:name).join(", ")
+			.wat-cf
+				= link_to image_tag("web-app-theme/icons/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}") + " Edytuj", edit_user_path(@user), :class => "button"
+				= link_to "Dodane ogłoszenia", user_applications_path(@user), :class => "button"
+			

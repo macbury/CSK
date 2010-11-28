@@ -34,4 +34,21 @@ $(document).ready(function () {
     
     return false;
   });
+  
+  $("#users_left li a").live("click", function () {
+    $(this).fadeOut();
+    var id = $(this).parents("li").attr("data-id");
+    
+    $.ajax({
+      type: "POST",
+      url: $(this).attr("href"),
+      data: "_method=delete",
+      dataType: "html",
+      success: function(html){
+        $('#users_right').append(html);
+      },
+    })
+    
+    return false;
+  });
 });

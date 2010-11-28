@@ -1,0 +1,20 @@
+.block
+	.secondary-navigation
+		%ul.wat-cf
+			%li.first.active= link_to "Wszystkie zgłoszenia", applications_path
+			%li= link_to "Nowe zgłoszenie", new_application_path
+			- if @user
+				%li= link_to "Profil użytkownika", @user
+	.content
+		%h2.title
+			- if @user
+				= "Zgłoszenia dodane przez #{@user.username}"
+			- else
+				= "Wszystkie zgłoszenia w systemie"
+		.inner
+			%ul.list
+				= render :partial => @applications
+			.actions-bar.wat-cf
+				.actions
+				= will_paginate @applications
+-#content_for :sidebar, render(:partial => 'sidebar')

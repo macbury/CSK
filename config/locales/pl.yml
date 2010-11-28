@@ -2,6 +2,16 @@
 # by Jacek Becela (jacek.becela@gmail.com, http://github.com/ncr)
 
 pl:
+  web-app-theme:
+    edit: "Edytuj"
+  head:
+    main_title: "Centralny System Komunikacji HeavyMusic.pl"
+    dashboard: "Kokpit"
+    categories: "Kategorie"
+    users: "Użytkownicy"
+    ownerships: "Kategorie - Członkowie"
+    sessions: "Logowanie"
+    applications: "Zgłoszenia"
   devise:
     sessions:
       user:

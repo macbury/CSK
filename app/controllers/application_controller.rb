@@ -20,6 +20,8 @@ class ApplicationController < ActionController::Base
 		end
 		
 		def categories_required!
-			redirect_to root_path, :notice => "Musisz miec przypisana chociaz jedna kategorie!" unless (logged_in? && self.current_user.categories.size > 0)
+			unless (logged_in? && (self.current_user.role?(User::ADMIN) || self.current_user.categories.size > 0))
+				redirect_to root_path, :notice => "Musisz miec przypisana chociaz jedna kategorie!"
+			end
 		end
 end

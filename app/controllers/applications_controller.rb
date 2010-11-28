@@ -1,10 +1,25 @@
 class ApplicationsController < ApplicationController
 	before_filter :authenticate_user!
-	before_filter :categories_required!
+	before_filter :preload_resource!, :only => [:index]
+	before_filter :admin_required!, :only => [:reaction]
+	before_filter :authorize_resource!, :only => [:show, :edit, :update, :destroy]
+	
+	def reaction
+		@application = Application.find(params[:id])
+		@application.change_status(params[:application][:reaction], self.current_user)
+		
+		redirect_to @application, :notice => "Zmieniono status na #{@application.reaction_text}"
+	end
+	
+	#before_filter :categories_required!
   # GET /applications
   # GET /applications.xml
   def index
-    @applications = Application.all
+		if @user
+			@applications = @user.applications.order("created_at DESC").paginate :per_page => 20, :page => params[:page]
+		else
+			@applications = Application.order("created_at DESC").paginate :per_page => 20, :page => params[:page]
+		end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,7 +30,6 @@ class ApplicationsController < ApplicationController
   # GET /applications/1
   # GET /applications/1.xml
   def show
-    @application = Application.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -36,13 +50,12 @@ class ApplicationsController < ApplicationController
 
   # GET /applications/1/edit
   def edit
-    @application = Application.find(params[:id])
   end
 
   # POST /applications
   # POST /applications.xml
   def create
-    @application = Application.new(params[:application])
+    @application = self.current_user.applications.new(params[:application])
 
     respond_to do |format|
       if @application.save
@@ -58,7 +71,6 @@ class ApplicationsController < ApplicationController
   # PUT /applications/1
   # PUT /applications/1.xml
   def update
-    @application = Application.find(params[:id])
 
     respond_to do |format|
       if @application.update_attributes(params[:application])
@@ -74,7 +86,6 @@ class ApplicationsController < ApplicationController
   # DELETE /applications/1
   # DELETE /applications/1.xml
   def destroy
-    @application = Application.find(params[:id])
     @application.destroy
 
     respond_to do |format|
@@ -82,4 +93,20 @@ class ApplicationsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+	protected
+		def authorize_resource!
+			if self.current_user.role?(User::ADMIN)
+				@application = Application.find(params[:id])
+			else
+				@application = Application.is_viewable_by_user(self.current_user).find(params[:id])
+			end
+		end
+		
+		def preload_resource!
+			if params[:user_id]
+				@user = User.find(params[:user_id])
+			else
+				admin_required!
+			end
+		end
 end

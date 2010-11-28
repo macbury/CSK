@@ -1,0 +1,13 @@
+- if role?(User::ADMIN)
+	.block
+		%h3 Status
+		.content
+			= form_for @application, :url => reaction_application_path(@application), :html => {:class => "form"} do |f|
+				- [Application::WAITING, Application::PENDING, Application::REACTION, Application::FINISHED].each do |reaction|
+					.group
+						= f.radio_button :reaction, reaction
+						= f.label :reaction, Application.format_reaction(reaction)
+				.group.navform.wat-cf
+					%button.button{:type => "submit"}
+						= image_tag("web-app-theme/icons/key.png")
+						Zmień status

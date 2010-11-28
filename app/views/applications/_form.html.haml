@@ -1,0 +1,25 @@
+.group
+	= f.label :topic, "Tytuł", :class => :label
+	= f.text_field :topic, :class => 'text_field'
+- unless self.current_user.role?(User::NORMAL)
+	.group
+		%label.label Kategorie
+		- self.current_user.categories.all.each do |category|
+			%div
+				= check_box_tag :categories_ids, category.id, @application.categories.include?(category),:name => "application[categories_ids][]"
+				= label_tag category.name
+.group
+	=# f.label :to_user_id, t("activerecord.attributes.application.to_user_id", :default => "To user"), :class => :label
+	=# f.hidden_field :to_user_id, :class => 'text_field'
+.group
+	= f.label :important, "Piorytet", :class => :label
+	= f.select :important, [["Zwykłe", 0], ["Ważne", 1]]
+.group
+	= f.label :content, "Tresc", :class => :label
+	= f.text_area :content, :class => 'text_area'
+	%span.description Ex: a simple text
+.group.navform.wat-cf
+	%button.button{:type => "submit"}
+		= image_tag("web-app-theme/icons/tick.png", :alt => "#{t("web-app-theme.save", :default => "Save")}")
+		Zapisz
+	= link_to image_tag("web-app-theme/icons/cross.png", :alt => "#{t("web-app-theme.cancel", :default => "Cancel")}") + " Anuluj", applications_path, :class => "button"

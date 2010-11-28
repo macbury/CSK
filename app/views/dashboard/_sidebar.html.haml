@@ -1,0 +1,7 @@
+.block
+	%h3 Twoje kategorie
+	%ul.navigation
+		- self.current_user.categories.all.each do |category|
+			%li
+				%a{:href => "#"}= category.name
+

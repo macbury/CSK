@@ -1,11 +1,11 @@
 .block
 	.secondary-navigation
 		%ul.wat-cf
-			%li.first.active= link_to "Aktywne zgłoszenia", root_path
-			%li= link_to "Archiwum", archive_path
+			%li.first= link_to "Aktywne zgłoszenia", root_path
+			%li.active= link_to "Archiwum", archive_path
 			%li= link_to "Nowe zgłoszenie", new_application_path
 	.content
-		%h2 Zgłoszenia
+		%h2 Archiwum
 		.inner
 			%ul.list
 				= render :partial => @applications

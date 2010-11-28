@@ -1,7 +1,7 @@
 !!! 5
 %html
 	%head
-		%title CSK
+		%title= [t('head.main_title'), t("head.#{controller.controller_name}", :default => nil)].compact.join(" - ")
 		= stylesheet_link_tag "web-app-theme/base", "web-app-theme/themes/default/style", "web-app-theme/override", "interface", :cache => true
 		= csrf_meta_tag
 		= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"
@@ -10,14 +10,14 @@
 		#container
 			#header
 				%h1
-					%a{:href => "/"} CSK
+					%a{:href => "/"}= t('head.main_title')
 				#user-navigation
 					%ul.wat-cf
 						%li=link_to "Profil", edit_user_path(self.current_user)
 						%li= link_to "Wyloguj", logout_path
 				#main-navigation
 					%ul.wat-cf
-						%li.first= link_to "Zgłoszenia", root_path 
+						%li.first= link_to "Zgłoszenia", root_path
 						- if logged_in?
 							%li= link_to "Użytkownicy", users_path if role?(User::ADMIN)
 							%li= link_to "Kategorie", categories_path if role?(User::ADMIN)

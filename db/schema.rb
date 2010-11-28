@@ -10,14 +10,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101120142021) do
+ActiveRecord::Schema.define(:version => 20101128132145) do
 
   create_table "applications", :force => true do |t|
     t.integer  "user_id"
     t.string   "topic"
     t.integer  "reaction"
     t.integer  "closed_by_user_id"
-    t.integer  "category_id"
     t.integer  "to_user_id"
     t.integer  "important"
     t.text     "content"
@@ -71,6 +70,13 @@ ActiveRecord::Schema.define(:version => 20101120142021) do
   create_table "ownerships", :force => true do |t|
     t.integer  "category_id"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "taggables", :force => true do |t|
+    t.integer  "category_id"
+    t.integer  "application_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

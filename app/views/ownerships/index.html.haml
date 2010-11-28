@@ -14,7 +14,7 @@
 			.columns.wat-cf
 				.column.left
 					.ul.scroll-list#users_left
-						= render :partial => "ownerships/user", :collection => @owners
+						= render :partial => "ownerships/owner", :collection => @owners
 				.column.right
 					= form_tag users_path, :method => :get, :class => "form" do
 						.inner.group

@@ -1,5 +1,4 @@
 Csk::Application.routes.draw do
-  resources :users
 	
 	resource :session
 	match '/gdzie-jest-krzyz' => "sessions#new", :as => :login
@@ -8,10 +7,19 @@ Csk::Application.routes.draw do
   	resources :ownerships
   end
 
-	resources :applications do
-  	resources :comments
-  end
+	match '/archive' => 'dashboard#archive'
 
+	resources :applications do
+		post "reaction", :on => :member
+		resources :comments
+  end
+	
+	match "/applications/:id/reaction" => 'applications#reaction'
+	
+	resources :users do
+  	resources :applications
+  end
+	
   #devise_for :users
 
   # The priority is based upon order of creation:
