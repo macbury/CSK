@@ -2,10 +2,10 @@
 %html
 	%head
 		%title= [t('head.main_title'), t("head.#{controller.controller_name}", :default => nil)].compact.join(" - ")
-		= stylesheet_link_tag "web-app-theme/base", "web-app-theme/themes/default/style", "web-app-theme/override", "interface"
+		= stylesheet_link_tag "web-app-theme/base", "web-app-theme/themes/default/style", "web-app-theme/override", "interface", "colorpicker"
 		= csrf_meta_tag
 		= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"
-		= javascript_include_tag "application", "rails"
+		= javascript_include_tag "application", "rails", "eye", "utils", "colorpicker"
 	%body
 		#container
 			#header

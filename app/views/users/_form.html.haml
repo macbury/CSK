@@ -20,6 +20,10 @@
 	.group
 		= f.label :about_admin, "O adminie", :class => :label
 		= f.text_area :about_admin, :class => 'text_area'
+- if self.current_user.role?(User::ADMIN)
+	.group
+		= f.label :role, "Uprawnienia", :class => :label
+		= f.select :role, [["Admin", User::ADMIN], ["Członek Zespołu", User::STAFF], ["Normalny", User::NORMAL]]
 .group.navform.wat-cf
 	%button.button{:type => "submit"}
 		= image_tag("web-app-theme/icons/tick.png", :alt => "#{t("web-app-theme.save", :default => "Save")}")

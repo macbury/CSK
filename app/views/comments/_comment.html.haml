@@ -1,0 +1,7 @@
+%li
+	%h4
+		= link_to comment.author.username, comment.author
+		napisał
+		= distance_of_time_in_words_to_now(comment.created_at)
+		temu
+	= comment.body

@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 	NORMAL = 0
 	STAFF = 1
 	ADMIN = 2
+	
 	ITOA64 = './0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
 	has_many :ownerships, :dependent => :destroy
 	has_many :categories, :through => :ownerships

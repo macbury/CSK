@@ -9,12 +9,13 @@
 		.inner
 			%table.table
 				%tr
-					%th.first Nazwa
+					%th.first{ :style => "width: 200px;" } Nazwa
 					%th Kolor
 					%th.last
 				- @categories.each do |category|
 					%tr{:class => cycle("odd", "even")}
 						%td
+							.category_color{ :style => "background-color: #{category.color}" }
 							= link_to category.name, edit_category_path(category)
 						%td
 							= category.color

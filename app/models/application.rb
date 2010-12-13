@@ -9,11 +9,19 @@ class Application < ActiveRecord::Base
 	belongs_to :closed_by, :class_name => "User", :foreign_key => "closed_by_user_id"
 	belongs_to :direct_to, :class_name => "User", :foreign_key => "to_user_id"
 	
+	has_many :comments, :dependent => :destroy
+	has_many :commenters, :class_name => "User", :foreign_key => "user_id", :through => :comments, :source => :author
+	
 	scope :not_closed, where("closed_by_user_id IS NULL")
 	scope :is_closed, where("closed_by_user_id IS NOT NULL")
 	scope :include_categories, joins({:taggable => :category})
 	scope :is_viewable_by_user, lambda { |*args|
-		include_categories.where("categories.id IN (?) OR to_user_id = ? OR user_id = ? ", args.first.categories.map(&:id), args.first.id, args.first.id)
+		categories_ids = args.size == 2 && !(args.last.nil? || args.last.empty?) ? args.last : args.first.categories.map(&:id)
+		include_categories.where("categories.id IN (?) OR to_user_id = ? OR user_id = ? ", categories_ids, args.first.id, args.first.id)
+	}
+	
+	scope :is_in_category, lambda { |*args|
+		include_categories.where("categories.id = ", args.first)
 	}
 	
 	validates :content, :presence => true

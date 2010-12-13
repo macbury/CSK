@@ -3,5 +3,7 @@
 	%ul.navigation
 		- self.current_user.categories.all.each do |category|
 			%li
-				%a{:href => "#"}= category.name
+				.category_color{ :style => "background-color: #{category.color}" }
+				= link_to category.name, root_path(:category_id => category.id)
+				.clear
 

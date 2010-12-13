@@ -68,6 +68,7 @@ class UsersController < ApplicationController
   def update
     if self.current_user.role?(User::ADMIN)
 			@user = User.find(params[:id])
+			@user.role = params[:user][:role]
 		else
 			@user = self.current_user
 		end

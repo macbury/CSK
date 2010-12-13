@@ -51,4 +51,35 @@ $(document).ready(function () {
     
     return false;
   });
+  
+  $('#category_color').ColorPicker({
+  	onSubmit: function(hsb, hex, rgb, el) {
+  		$(el).val("#"+hex);
+  		$(el).ColorPickerHide();
+  	},
+  	onBeforeShow: function () {
+  		$(this).ColorPickerSetColor(this.value);
+  	},
+  	onChange: function (hsb, hex, rgb) {
+      $('#category_color').val("#"+hex);
+    }
+  }).bind('keyup', function(){
+  	$(this).ColorPickerSetColor(this.value);
+  });
+  
+  $('#new_comment').submit(function () {
+    $('.comment_ajax_loader').fadeIn();
+    
+    $.ajax({
+      url: $(this).attr("action"),
+      type: "POST",
+      data: $(this).serialize(),
+      dataType: "script",
+      success: function(){
+        $('#new_comment')[0].reset();
+        $('.comment_ajax_loader').fadeOut();
+      },
+    });
+    return false;
+  });
 });

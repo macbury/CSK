@@ -7,6 +7,37 @@
   list-style: none inside;
 }
 
+.category_color {
+  width: 16px;
+  height: 16px;
+  border: 1px solid #000;
+  background: #fff;
+  float: left;
+}
+
+.navigation .category_color {
+  margin-left: 13px;
+  margin-top: 8px;
+}
+
+.table .category_color {
+  margin-right: 5px;
+  margin-top: -2px;
+}
+
+.comment_ajax_loader {
+  background: #fff url('/images/reksio_anim.gif') no-repeat center center;
+  height: 152px;
+  width: 654px;
+  display: none;
+  position: absolute;
+  z-index: 10;
+}
+
+#comment_body {
+  height: 100px;
+}
+
 #users_left {
   height: 346px;
 }

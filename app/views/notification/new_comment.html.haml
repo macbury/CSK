@@ -1,0 +1,9 @@
+%h2 
+	Pojawił się nowy komentarz pod zgłoszeniem:
+	= link_to @comment.application.topic, @comment.application
+
+%p 
+	Autor:
+	= @comment.author.username
+%div
+	= '"' + h(@comment.body) + '"'

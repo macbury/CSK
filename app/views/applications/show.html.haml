@@ -41,7 +41,7 @@
 			%p
 				%b
 					Tresc:
-			= simple_format @application.content
+			= simple_format h(@application.content)
 			%p
 				%b
 					Wykonano
@@ -51,4 +51,27 @@
 			.wat-cf
 				= link_to image_tag("web-app-theme/icons/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}") + " Edytuj", edit_application_path(@application), :class => "button"
 				= link_to image_tag("web-app-theme/icons/cross.png", :alt => "#{t("web-app-theme.delete", :default=> "Delete")}") + "Usuń", application_path(@application), :method => "delete", :class => "button", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}"
+
+.block
+	.content
+		%h2.title Nowy Komentarz
+		.inner
+			.comment_ajax_loader
+			= form_for [@application, Comment.new], :html => { :class => "form" } do |f|
+				.group
+					= f.text_area :body, :class => 'text_area'
+				.group.navform.wat-cf
+					%button.button{:type => "submit"}
+						= image_tag("web-app-theme/icons/tick.png")
+						Dodaj
+
+.block
+	.content
+		%h2.title Komentarze
+		.inner
+			%ul.list.comments
+				- if @application.comments.empty?
+					%li.no_comments Brak Komentarzy
+				- else
+					= render :partial => @application.comments.all
 - content_for :sidebar, render(:partial => 'sidebar')

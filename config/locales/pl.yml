@@ -4,8 +4,11 @@
 pl:
   web-app-theme:
     edit: "Edytuj"
+  notifications:
+    new_comment:
+      subject: "[CSK - fhMusic.pl] Nowy komentarz pod zgłoszeniem"
   head:
-    main_title: "Centralny System Komunikacji HeavyMusic.pl"
+    main_title: "Centralny System Komunikacji rhMusic.pl"
     dashboard: "Kokpit"
     categories: "Kategorie"
     users: "Użytkownicy"
@@ -118,14 +121,6 @@ pl:
   activerecord:
     models:
       user: "Użytkownik"
-      job: "Praca"
-      search: "Wyszukiwarka"
-      applicant: "Aplikant"
-      comment:
-        attributes:
-          captcha_solution:
-            blank: 'musi być podane'
-            invalid: 'odpowiedź jest niepoprawna'
     errors:
       template:
         header:

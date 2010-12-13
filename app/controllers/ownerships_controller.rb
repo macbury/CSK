@@ -9,6 +9,7 @@ class OwnershipsController < ApplicationController
 	def create
 		@user = User.find(params[:user_id])
 		@ownership = Ownership.find_or_create_by_user_id_and_category_id(@user.id, @category.id)
+		@user.role = User::STAFF
 		
 		render :partial => "ownerships/owner", :object => @user
 	end
